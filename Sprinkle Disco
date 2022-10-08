@@ -1,0 +1,94 @@
+let sprinkles=[]; //empty array
+
+let counter = 0; 
+
+let Disco;
+
+
+
+ function setup() {
+   createCanvas(800,800);
+     Disco = color(random(255), random(255), random(255));
+  frameRate(30);
+   
+   
+   for(let i= 0; i<10; i++){
+     
+     sprinkles[i]=new Sprinkle (random(width),random(height));
+       
+
+   }
+   
+
+ }
+
+ function draw() {
+   background(Disco);
+   
+   textSize(32);
+text('Sprinkle', 10, 30);
+//fill(0, 102, 153);
+text('Disco', 10, 60);
+
+   
+   
+   for(let i= 0; i<10; i++){
+     
+     sprinkles[i].body();
+     sprinkles[i].move();
+   }
+   
+   {if (counter > 19) {
+    Disco = color(random(255), random(255), random(255));
+    counter = 0;
+
+ }
+       counter = counter + 1;
+
+   }
+
+ }
+ class Sprinkle { //this is a template 
+  
+ constructor (x,y) { //special method that creates and initializes the object
+   this.x=x; //data to assign variable to the object, must use "this."" in class
+   this.y=y; //"this" refers to the owner object, "." operator lets us navigate the directory of the program to locate something specific 
+ 
+ }
+   
+    body(){
+      // rect(this.x,this.y, 50, 35);
+      // noStroke();
+      // fill(random(255), random(255), random(255))
+
+      
+      
+     translate(80, 20);
+      noStroke();
+      for (let i = 0; i < 100; i ++) {
+      ellipse(this.x,this.y, 100, 50);
+      rotate(PI/5);
+              fill(random(255), random(255), random(255))
+
+    }
+      
+   }
+   
+   move(){
+    this.x =this.x+ random (-1,3);
+    this.y=this.y+ random (-1,3);
+     
+       if (this.x>800){
+       this.x= 0;
+       }
+     
+      if (this.y>800){
+       this.y= 0;
+       }
+       
+     }
+     
+   }
+   
+ 
+  
